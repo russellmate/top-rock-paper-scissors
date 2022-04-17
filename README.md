@@ -1,1 +1,5 @@
 The Odin Project - Rock, Paper Scissors
+
+This was my first real Javascript project that was intened to put everything I have learned so far to the test. I learned a lot while working on this project, despite its small size, as I needed to figure out how to solve real programming problems, which is something that I had not done until now without explicit instruction. 
+
+I correctly implemented loops, functions and DOM manipulation techniques for the first time in a real project here and am happy with how the end result turned out. The UI looks very basic as it was not my main concern here. I may revisit this and freshen the look up a bit in the future. 
