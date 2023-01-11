@@ -8,54 +8,45 @@ let uS = 0;
 let cS = 0;
 
 function getComputerChoice() {
-	let choice = ['rock', 'paper', 'scissors'];
+	let choice = ['Rock', 'Paper', 'Scissors'];
 	let random = choice[Math.floor(Math.random() * choice.length)];
 	return random;
 }
 
-function getPlayerChoice() {
-	rock.addEventListener('onclick', () => {
-		return 'rock';
-	});
-	paper.addEventListener('onclick', () => {
-		return 'paper';
-	});
-	scissors.addEventListener('onclick', () => {
-		return 'scissors';
-	});
-}
+function round() {
+	let computerChoice = getComputerChoice();
+	let playerChoice;
 
-let computerChoice = getComputerChoice();
-let playerChoice = getPlayerChoice();
-
-function round(playerChoice, computerChoice) {
 	if (
-		(playerChoice === 'rock' && computerChoice === 'paper') ||
-		(playerChoice === 'paper' && computerChoice === 'scissors') ||
-		(playerChoice === 'scissors' && computerChoice === 'rock')
+		(playerChoice === 'Rock' && computerChoice === 'Paper') ||
+		(playerChoice === 'Paper' && computerChoice === 'Scissors') ||
+		(playerChoice === 'Scissors' && computerChoice === 'Rock')
 	) {
 		choiceText.textContent = `You lose! You chose ${playerChoice} & the computer chose ${computerChoice}`;
 		cS++;
 		computerScore.textContent = cS;
 	} else if (
-		(playerChoice === 'paper' && computerChoice === 'rock') ||
-		(playerChoice === 'rock' && computerChoice === 'scissors') ||
-		(playerChoice === 'scissors' && computerChoice === 'paper')
+		(playerChoice === 'Paper' && computerChoice === 'Rock') ||
+		(playerChoice === 'Rock' && computerChoice === 'Scissors') ||
+		(playerChoice === 'Scissors' && computerChoice === 'Paper')
 	) {
 		choiceText.textContent = `You win! You chose ${playerChoice} & the computer chose ${computerChoice}`;
 		uS++;
 		userScore.textContent = uS;
-	} else {
+	} else if (
+		(playerChoice === 'Paper' && computerChoice === 'Paper') ||
+		(playerChoice === 'Rock' && computerChoice === 'Rock') ||
+		(playerChoice === 'Scissors' && computerChoice === 'Scissors')
+	) {
 		choiceText.textContent = `Draw! You chose ${playerChoice} & the computer chose ${computerChoice}`;
 	}
 }
-
-round(playerChoice, computerChoice);
-
+round();
 //function game() {
-//	for (let i = 0; i < 5; i++) {
-//		round(playerChoice, computerChoice);
-//	}
+//for (let i = 0; i < 10; i++) {
+//	if (cS > 4 || uS > 4) break;
+//round();
+//}
 //}
 //
 //game();
