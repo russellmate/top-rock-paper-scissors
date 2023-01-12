@@ -1,11 +1,32 @@
 const choiceText = document.getElementById('choices');
 const userScore = document.getElementById('user-score');
 const computerScore = document.getElementById('computer-score');
-const rock = document.querySelector('#rock');
-const paper = document.querySelector('#paper');
-const scissors = document.querySelector('#scissors');
 let uS = 0;
 let cS = 0;
+
+const rock = document.querySelector('#rock').addEventListener('click', () => {
+	if (uS === 5 || cS === 5) {
+		return;
+	} else {
+		round('Rock', getComputerChoice());
+	}
+});
+const paper = document.querySelector('#paper').addEventListener('click', () => {
+	if (uS === 5 || cS === 5) {
+		return;
+	} else {
+		round('Paper', getComputerChoice());
+	}
+});
+const scissors = document
+	.querySelector('#scissors')
+	.addEventListener('click', () => {
+		if (uS === 5 || cS === 5) {
+			return;
+		} else {
+			round('Scissors', getComputerChoice());
+		}
+	});
 
 function getComputerChoice() {
 	let choice = ['Rock', 'Paper', 'Scissors'];
@@ -13,10 +34,9 @@ function getComputerChoice() {
 	return random;
 }
 
-function round() {
-	let computerChoice = getComputerChoice();
-	let playerChoice;
+let computerChoice = getComputerChoice();
 
+function round(playerChoice, computerChoice) {
 	if (
 		(playerChoice === 'Rock' && computerChoice === 'Paper') ||
 		(playerChoice === 'Paper' && computerChoice === 'Scissors') ||
@@ -33,20 +53,12 @@ function round() {
 		choiceText.textContent = `You win! You chose ${playerChoice} & the computer chose ${computerChoice}`;
 		uS++;
 		userScore.textContent = uS;
-	} else if (
-		(playerChoice === 'Paper' && computerChoice === 'Paper') ||
-		(playerChoice === 'Rock' && computerChoice === 'Rock') ||
-		(playerChoice === 'Scissors' && computerChoice === 'Scissors')
-	) {
+	} else if (playerChoice === computerChoice) {
 		choiceText.textContent = `Draw! You chose ${playerChoice} & the computer chose ${computerChoice}`;
 	}
+	if (uS === 5) {
+		choiceText.textContent = 'Congratulations! You beat the computer!';
+	} else if (cS === 5) {
+		choiceText.textContent = 'Oh no! You got beat by the computer!';
+	}
 }
-round();
-//function game() {
-//for (let i = 0; i < 10; i++) {
-//	if (cS > 4 || uS > 4) break;
-//round();
-//}
-//}
-//
-//game();
