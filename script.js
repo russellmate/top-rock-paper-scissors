@@ -1,8 +1,11 @@
 const choiceText = document.getElementById('choices');
 const userScore = document.getElementById('user-score');
 const computerScore = document.getElementById('computer-score');
+const newLine = '\r\n';
 let uS = 0;
 let cS = 0;
+
+choiceText.textContent = `It's up to you to beat the computer.${newLine}Select Rock, Paper or Scissors to begin.`;
 
 const rock = document.querySelector('#rock').addEventListener('click', () => {
 	if (uS === 5 || cS === 5) {
@@ -42,7 +45,7 @@ function round(playerChoice, computerChoice) {
 		(playerChoice === 'Paper' && computerChoice === 'Scissors') ||
 		(playerChoice === 'Scissors' && computerChoice === 'Rock')
 	) {
-		choiceText.textContent = `You lose! You chose ${playerChoice} & the computer chose ${computerChoice}`;
+		choiceText.textContent = `You lose!${newLine}You chose ${playerChoice} & the computer chose ${computerChoice}`;
 		cS++;
 		computerScore.textContent = cS;
 	} else if (
@@ -50,15 +53,23 @@ function round(playerChoice, computerChoice) {
 		(playerChoice === 'Rock' && computerChoice === 'Scissors') ||
 		(playerChoice === 'Scissors' && computerChoice === 'Paper')
 	) {
-		choiceText.textContent = `You win! You chose ${playerChoice} & the computer chose ${computerChoice}`;
+		choiceText.textContent = `You win!${newLine}You chose ${playerChoice} & the computer chose ${computerChoice}`;
 		uS++;
 		userScore.textContent = uS;
 	} else if (playerChoice === computerChoice) {
-		choiceText.textContent = `Draw! You chose ${playerChoice} & the computer chose ${computerChoice}`;
+		choiceText.textContent = `Draw!${newLine}You chose ${playerChoice} & the computer chose ${computerChoice}`;
 	}
 	if (uS === 5) {
-		choiceText.textContent = 'Congratulations! You beat the computer!';
+		choiceText.textContent = `Congratulations!${newLine}You beat the computer!`;
 	} else if (cS === 5) {
-		choiceText.textContent = 'Oh no! You got beat by the computer!';
+		choiceText.textContent = `Oh no!${newLine}You got beat by the computer!`;
 	}
 }
+
+const reset = document.getElementById('reset').addEventListener('click', () => {
+	choiceText.textContent = `It's up to you to beat the computer.${newLine}Select Rock, Paper or Scissors to begin.`;
+	uS = 0;
+	cS = 0;
+	computerScore.textContent = cS;
+	userScore.textContent = uS;
+});
