@@ -1,0 +1,65 @@
+:root {
+	--maroon: #7c123a;
+	--white: #ffffff;
+	font-family: 'Sofia Sans', sans-serif;
+	line-height: 1.5;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+
+.buttons {
+	margin-bottom: 1rem;
+}
+
+.button {
+	margin: 1rem;
+	padding: 1rem;
+	border-radius: 20px;
+	font-size: 2rem;
+	background-color: #7c123a;
+	color: #ffffff;
+	cursor: pointer;
+	font-weight: 700;
+}
+
+.results,
+.result {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.results {
+	margin-top: 1rem;
+}
+
+.result {
+	color: #7c123a;
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+#choices {
+	white-space: pre;
+}
+
+#reset {
+	font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+	.buttons {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}

@@ -4,6 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;700&display=swap');
+		</style>
+		<link rel="stylesheet" href="./style.css" />
 		<title>Rock, Paper, Scissors</title>
 	</head>
 	<body>
@@ -12,12 +16,14 @@
 			<button class="button" id="paper">Paper</button>
 			<button class="button" id="scissors">Scissors</button>
 		</div>
-		<div id="results">
-			<p>User score: <span id="user-score"></span></p>
-			<p>Computer score: <span id="computer-score"></span></p>
-			<p id="choices"></p>
-			<p id="final-result"></p>
+		<div class="results">
+			<p class="result">User score: <span id="user-score">0</span></p>
+			<p class="result">
+				Computer score: <span id="computer-score">0</span>
+			</p>
+			<p class="result" id="choices"></p>
+			<button class="button" id="reset">Reset Game</button>
 		</div>
+		<script src="./script.js"></script>
 	</body>
-	<script src="./script.js"></script>
 </html>

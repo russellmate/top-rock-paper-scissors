@@ -1,88 +1,75 @@
-function computerPlay() {
-	const rps = ['rock', 'paper', 'scissors'];
-	const choice = rps[Math.floor(Math.random() * rps.length)];
-	return choice;
-}
-const body = document.querySelector('body');
-body.setAttribute(
-	'style',
-	'height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column'
-);
-const results = document.getElementById('results');
-results.setAttribute(
-	'style',
-	'width: 50vw; display: flex; flex-direction: column; align-items: center;'
-);
-let userScore = document.getElementById('user-score');
-userScore.setAttribute('style', 'text-align: center;');
-let computerScore = document.getElementById('computer-score');
-let choices = document.getElementById('choices');
-let finalResult = document.getElementById('final-result');
-let userPoints = 1;
-let computerPoints = 1;
+const choiceText = document.getElementById('choices');
+const userScore = document.getElementById('user-score');
+const computerScore = document.getElementById('computer-score');
+const newLine = '\r\n';
+let uS = 0;
+let cS = 0;
 
-function oneRound(playerSelection, computerSelection) {
-	if (playerSelection == computerSelection) {
-		return (choices.textContent =
-			"It's a draw! You chose " +
-			playerSelection +
-			' and the computer chose ' +
-			computerSelection);
-	}
+choiceText.textContent = `It's up to you to beat the computer.${newLine}Select Rock, Paper or Scissors to begin.`;
 
-	if (
-		(playerSelection == 'rock' && computerSelection == 'scissors') ||
-		(playerSelection == 'paper' && computerSelection == 'rock') ||
-		(playerSelection == 'scissors' && computerSelection == 'paper')
-	) {
-		userScore.textContent = userPoints++;
-		choices.textContent =
-			'You win! You chose ' +
-			playerSelection +
-			' and the computer chose ' +
-			computerSelection;
-	} else {
-		computerScore.textContent = computerPoints++;
-		choices.textContent =
-			'You lose! You chose ' +
-			playerSelection +
-			' and the computer chose ' +
-			computerSelection;
-	}
-
-	if (userPoints == 6) {
-		finalResult.textContent = 'You are the winner!';
-	} else if (computerPoints == 6) {
-		finalResult.textContent = 'The computer is the winner!';
-	} else {
+const rock = document.querySelector('#rock').addEventListener('click', () => {
+	if (uS === 5 || cS === 5) {
 		return;
+	} else {
+		round('Rock', getComputerChoice());
+	}
+});
+const paper = document.querySelector('#paper').addEventListener('click', () => {
+	if (uS === 5 || cS === 5) {
+		return;
+	} else {
+		round('Paper', getComputerChoice());
+	}
+});
+const scissors = document
+	.querySelector('#scissors')
+	.addEventListener('click', () => {
+		if (uS === 5 || cS === 5) {
+			return;
+		} else {
+			round('Scissors', getComputerChoice());
+		}
+	});
+
+function getComputerChoice() {
+	let choice = ['Rock', 'Paper', 'Scissors'];
+	let random = choice[Math.floor(Math.random() * choice.length)];
+	return random;
+}
+
+let computerChoice = getComputerChoice();
+
+function round(playerChoice, computerChoice) {
+	if (
+		(playerChoice === 'Rock' && computerChoice === 'Paper') ||
+		(playerChoice === 'Paper' && computerChoice === 'Scissors') ||
+		(playerChoice === 'Scissors' && computerChoice === 'Rock')
+	) {
+		choiceText.textContent = `You lose!${newLine}You chose ${playerChoice} & the computer chose ${computerChoice}`;
+		cS++;
+		computerScore.textContent = cS;
+	} else if (
+		(playerChoice === 'Paper' && computerChoice === 'Rock') ||
+		(playerChoice === 'Rock' && computerChoice === 'Scissors') ||
+		(playerChoice === 'Scissors' && computerChoice === 'Paper')
+	) {
+		choiceText.textContent = `You win!${newLine}You chose ${playerChoice} & the computer chose ${computerChoice}`;
+		uS++;
+		userScore.textContent = uS;
+	} else if (playerChoice === computerChoice) {
+		choiceText.textContent = `Draw!${newLine}You chose ${playerChoice} & the computer chose ${computerChoice}`;
+	}
+	if (uS === 5) {
+		choiceText.textContent = `Congratulations!${newLine}You beat the computer!`;
+	} else if (cS === 5) {
+		choiceText.textContent = `Oh no!${newLine}You got beat by the computer!`;
 	}
 }
 
-const rock = document
-	.getElementById('rock')
-	.addEventListener('click', function () {
-		if (userPoints == 6 || computerPoints == 6) {
-			return;
-		} else {
-			oneRound('rock', computerPlay());
-		}
-	});
-const paper = document
-	.getElementById('paper')
-	.addEventListener('click', function () {
-		if (userPoints == 6 || computerPoints == 6) {
-			return;
-		} else {
-			oneRound('paper', computerPlay());
-		}
-	});
-const scissors = document
-	.getElementById('scissors')
-	.addEventListener('click', function () {
-		if (userPoints == 6 || computerPoints == 6) {
-			return;
-		} else {
-			oneRound('scissors', computerPlay());
-		}
-	});
+const reset = document.getElementById('reset').addEventListener('click', () => {
+	choiceText.textContent = `It's up to you to beat the computer.${newLine}Select Rock, Paper or Scissors to begin.`;
+	uS = 0;
+	cS = 0;
+	computerScore.textContent = cS;
+	userScore.textContent = uS;
+});
