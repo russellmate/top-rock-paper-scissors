@@ -5,8 +5,8 @@
    Play a 5 rounds of Rock, paper scissors versus the computer and have the result returned to them. 
 
 ## Screenshot
+![image](https://user-images.githubusercontent.com/87971535/212531582-faa55f6c-5b79-4b4d-a40a-947c79e59eea.png)
 
-![image]/home/russell/web-dev/TOP/rock-paper-scissors/Screenshot_2023-01-15_08-29-10.png
 
 ## Links
 
